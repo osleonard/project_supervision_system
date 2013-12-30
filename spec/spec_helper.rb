@@ -1,21 +1,21 @@
 require 'rubygems'
-require 'spork'
+#require 'spork'
 
 
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
-Spork.prefork do
-  # Loading more in this block will cause your tests to run faster. However,
-  # if you change any configuration or code from libraries loaded here, you'll
-  # need to restart spork for it take effect.
-
-end
-
-Spork.each_run do
-  # This code will be run each time you run your specs.
-
-end
+#Spork.prefork do
+#  # Loading more in this block will cause your tests to run faster. However,
+#  # if you change any configuration or code from libraries loaded here, you'll
+#  # need to restart spork for it take effect.
+#
+#end
+#
+#Spork.each_run do
+#  # This code will be run each time you run your specs.
+#
+#end
 
 # --- Instructions ---
 # Sort the contents of this file into a Spork.prefork and a Spork.each_run
@@ -50,7 +50,7 @@ end
 
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-Spork.prefork do
+#Spork.prefork do
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
@@ -65,7 +65,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.check_pending! if defined?(ActiveRecord::Migration)
 
 RSpec.configure do |config|
-    config.include Capybara::DSL
+  config.include Capybara::DSL
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -93,9 +93,9 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 end
-end
+#end
 
-Spork.each_run do
+#Spork.each_run do
 
-end
+#end
 

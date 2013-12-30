@@ -1,5 +1,8 @@
 ProjectSupervisionSystem::Application.routes.draw do
   root  'static_pages#home'
+  get "/static_pages/home"
+  get "/static_pages/contact"
+  get "/static_pages/register"
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/register', to: 'static_pages#register', via: 'get'
 
