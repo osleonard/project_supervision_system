@@ -1,43 +1,49 @@
 require 'spec_helper'
 
 describe "StaticPages" do
-    let(:base_title) {"Welcome To Online Supervision App"}
+
   describe "Home page" do
     
-      it "should have the right title" do
-          visit '/static_pages/home'
-            expect(page).to have_title("#{base_title} | Home")
+      it "should have the base title" do
+            visit root_path
+            expect(page).to have_title("Welcome To Online Supervision App")
+    end
+
+    it "should not have custom page title " do
+    visit root_path
+    expect(page).not_to have_title('| Home')
     end
     
-      it "should have the content 'Welcome To Online Supervision App'" do
-       visit '/static_pages/home/'
+      it "should have h1 'Welcome To Online Supervision App'" do
+       visit root_path
       expect(page).to have_content('Welcome To Online Supervision App')
     end
   end 
   
 describe "Contact" do
 
-    it "should have the content 'Welcome To Online Collaboration App'" do
-      visit '/static_pages/contact/'
+    it "should have h1 'Contact Page' " do
+      visit contact_path
       expect(page).to have_content('Contact')
     end
 
-   it "should have the right title" do
-          visit '/static_pages/contact'
-            expect(page).to have_title("#{base_title} | Contact")
+   it "should have the right title 'Contact' " do
+          visit contact_path
+            expect(page).to have_title("Welcome To Online Supervision App | Contact")
     end
   end
 
 describe "Register" do
     
-    it "should have the content 'Welcome To Online Collaboration App'" do
-      visit '/static_pages/register/'
-      expect(page).to have_content('Registration')
+    it "should have h1 'Signup'" do
+      visit register_path 
+      expect(page).to have_content('Signup')
     end
 
-    it "should have the right title" do
-          visit '/static_pages/register'
-            expect(page).to have_title("#{base_title} | Register")
+    it "should have the right title 'Signup' " do
+          visit register_path
+            expect(page).to have_title("Welcome To Online Supervision App | Signup")
     end
   end
- end
+end
+
