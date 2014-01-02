@@ -23,7 +23,7 @@ describe User do
         it {should_not be_valid }
     end
 
-    describe "when matric_number format is invalid" do
+    describe "when matric number format is invalid" do
         it "should be valid"
         numbers= %w[AUO/00/ AUO/0/111 AUO/00/1]
         numbers.each do |invalid_number|
