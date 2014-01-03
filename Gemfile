@@ -17,7 +17,7 @@ end
 
 #group :test do
 #  gem 'selenium-webdriver', '2.35.1'
-gem 'libnotify', '0.8.0'
+#gem 'libnotify', '0.8.0'
 #end
 
 # Use SCSS for stylesheets
