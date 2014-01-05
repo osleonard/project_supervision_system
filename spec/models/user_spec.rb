@@ -1,11 +1,14 @@
 require 'spec_helper'
 
 describe User do
-  before {@user = User.new(name: "Example User", matric_no:"AUO/09/123", email:"user@example.com")}
+  before {@user = User.new(name: "Akinmolayan Olushola", matric_no:"AUO/11/794", email:"lakinmolayan@gmail.com", password: "passw0rd", password_confirmation: "passw0rd")}
   it {should respond_to(:name)}
   it {should respond_to(:matric_no)}
   it {should respond_to(:email)}
-  it { @user.should be_valid }
+  it {should respond_to(:password_digest)}
+  it {should respond_to(:password) }
+  it {should respond_to(:password_confirmation) }
+  it {should respond_to(:authenticate)}
 
   context "when name is not present" do
     before {@user.name= " " }
@@ -73,5 +76,33 @@ describe User do
       user_with_same_email.save
     end
     it {should_not be_valid}
+  end
+  context "when password is not present" do 
+      before do 
+        @user = User.new(name: "Akinmolayan Olushola", matric_no:"AUO/11/794", email: "lakinmolayan@gmail.com",password: " ", password_confirmation: " ")
+      end
+      it { should_not be_valid }
+  end
+  context "when password doesn't match confirmation" do
+      before { @user.password_confirmation = "mismatch" }
+          it { should_not be_valid }
+  end
+  context "return value of authenticate method" do 
+      before {@user.save}
+      let(:found_user) {User.find_by(matric_no: @user.matric_no)}
+
+      context "with valid password" do
+          it { should eq found_user.authenticate(@user.password) }
+      end
+
+      context "with invalid password" do
+          let(:user_for_invalid_password) { found_user.authenticate("invalid") }
+          it { should_not eq user_for_invalid_password }
+          specify { expect(user_for_invalid_password).to be_false }
+      end
+      context "with a password that's too short" do
+          before { @user.password = @user.password_confirmation = "a" * 5 }
+            it { should be_invalid }
+      end
   end
 end
