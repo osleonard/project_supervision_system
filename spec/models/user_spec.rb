@@ -87,7 +87,7 @@ describe User do
       before { @user.password_confirmation = "mismatch" }
           it { should_not be_valid }
   end
-  context "return value of authenticate method" do 
+  describe "return value of authenticate method" do 
       before {@user.save}
       let(:found_user) {User.find_by(matric_no: @user.matric_no)}
 
