@@ -23,6 +23,5 @@ ActiveRecord::Schema.define(version: 20140104002027) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["matric_no"], name: "index_users_on_matric_no", unique: true
 
 end

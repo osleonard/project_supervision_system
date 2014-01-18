@@ -1,20 +1,25 @@
 class UsersController < ApplicationController
-    def show
-        @user = User.find(params[:id])
-    end
-    def create
-        @user = User.new(user_params)
-        if @user.save
-        else
-            render 'new'
-        end
-    end
+  def show
+    @user = User.find(params[:id])
+  end
 
-    private
+  def new
+    @user = User.new
+  end
 
-    def user_params
-        param.require(:user).permit(:name, :matric_no,
-                                    :email, :password, :password_confirmation)      
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to root_path #home page redirection for the moment
+    else
+      render 'new'
     end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :matric_no,:email, :password, :password_confirmation)
+  end
 
 end
