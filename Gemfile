@@ -14,10 +14,6 @@ group :development, :test do
   gem 'factory_girl_rails', '4.2.1'
   gem 'database_cleaner'
   gem 'launchy'
-  #gem 'libnotify', '0.8.0'
-  #gem 'guard-spork', '1.5.0'
-  #gem 'spork-rails', '4.0.0'
-  #gem 'childprocess', '0.3.6'
 end
 
 # Use SCSS for stylesheets

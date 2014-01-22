@@ -10,7 +10,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path #home page redirection for the moment
+      sign_in @user
+      flash[:success] = "Welcome to Online Supervision App!"
+      redirect_to @user #home page redirection for the moment
     else
       render 'new'
     end
