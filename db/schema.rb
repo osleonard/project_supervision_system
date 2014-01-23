@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140122041555) do
+ActiveRecord::Schema.define(version: 20140123120432) do
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -24,7 +24,6 @@ ActiveRecord::Schema.define(version: 20140122041555) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["matric_no"], name: "index_users_on_matric_no", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
 end
