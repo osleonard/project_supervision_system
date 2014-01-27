@@ -1,9 +1,16 @@
-def create
-  @user = User.create (params[:users])
-end
+class FileUploadController < ApplicationController
 
-private
+  def new
+    @file_upload = Fileupload.new
+  end
 
-def user_params
-  param.require(:user).permit(:document_avatar)
+  def create
+    @file_upload = Fileupload.create(file_params)
+  end
+
+  private
+
+  def file_params
+    params.require(:file_upload).permit(:document)
+  end
 end

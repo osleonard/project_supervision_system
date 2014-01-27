@@ -1,4 +1,3 @@
 class Fileupload < ActiveRecord::Base
-attr_accessible :document_avatar
-has_attached_file :document_avatar :default_url => "/files/:style/missing.doc"
+  has_attached_file :document_avatar, :default_url => "/public/uploads/missing.doc"
 end

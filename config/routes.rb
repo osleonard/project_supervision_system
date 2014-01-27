@@ -7,7 +7,8 @@ ProjectSupervisionSystem::Application.routes.draw do
   match '/signup', to:'users#new', via: 'get'
   match '/signin', to:'sessions#new', via:'get'
   match '/signout', to:'sessions#destroy', via:'delete'
-  match '/upload', to:'users#upload', via: 'get'
+  resources :file_upload 
+  match '/upload', to:'file_upload#new', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
