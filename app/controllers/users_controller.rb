@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome"
-      redirect_to root_ptha #home page redirection for the moment
+      redirect_to root_path #home page redirection for the moment
     else
       render 'new'
     end

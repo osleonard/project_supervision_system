@@ -21,9 +21,9 @@ describe "AuthenticationPages" do
       end
     end
     context "with valid information"  do
-      before { visit signin_path }
       let(:user) { FactoryGirl.create(:user) } 
       before do
+        visit signin_path
         fill_in "session_matric_no", with: user.matric_no
         fill_in "session_password", with: user.password
         click_button "Sign in"

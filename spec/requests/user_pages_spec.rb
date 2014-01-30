@@ -4,8 +4,10 @@ describe "UserPages" do
   subject { page } 
 
   context "profile page" do
-    before { @user = FactoryGirl.create(:user) }
-    before { visit user_path(@user) }
+    before do
+      @user = FactoryGirl.create(:user) 
+      visit user_path(@user)
+    end
     it { should have_content(@user.name) }
     it { should have_title(@user.name) }    
   end
@@ -24,18 +26,28 @@ describe "UserPages" do
     end
   end
 
-  context "with valid information" do
-    before do 
-      visit signup_path
-      fill_in "user_name", with: "Akinmolayan Olushola"
-      fill_in "user_matric_no", with: "auo/11/794"
-      fill_in "user_email", with: "lakinmolayan@gmail.com"
-      fill_in "user_password", with: "passw0rd"
-      fill_in "user_password_confirmation", with: "passw0rd"
-    end
+  it "should create a user" do 
+    visit signup_path
+    fill_in "user_name", with: "Akinmolayan Olushola"
+    fill_in "user_matric_no", with: "auo/11/794"
+    fill_in "user_email", with: "lakinmolayan@gmail.com"
+    fill_in "user_password", with: "passw0rd"
+    fill_in "user_password_confirmation", with: "passw0rd"
+    expect { click_button submit }.to change{User.count}.by(1)
+  end
 
-    it "should create a user" do 
-      expect { click_button submit }.to change{User.count}.by(1)
-    end
+  it "should have a route for projects" do
+    @user = FactoryGirl.build(:user)
+    @project = FactoryGirl.build(:project)
+    @user.projects << @project
+    @user.save
+    @user.reload
+    @project.reload
+    get user_projects_path(@user, @project) #"user/#{@user.id}/projects/"
+    response.should be_success
+  end
+
+  it "users should be able to upload an own a file" do
+    
   end
 end

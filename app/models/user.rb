@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :projects
   before_save { self.matric_no = matric_no.downcase }
   before_save { self.email = email.downcase }
   before_save  :create_remember_token

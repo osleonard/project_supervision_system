@@ -16,17 +16,18 @@ describe "Project Upload" do
     visit upload_path
     attach_file "project_document", (Rails.root + "spec/fixtures/test.doc")
     click_button "Upload File"
+    page.should have_content("Successfully uploaded project")
   end
 
 
   it "should have a list of all projects" do
     FactoryGirl.create_list(:project, 10)
     visit projects_path
-    page.should have_content("Download Project")
+    page.should have_link("test.doc")
   end
 
   it "can download files" do
-    @project = Project.new(document: File.open((Rails.root + "spec/fixtures/test.doc"), "rb"))
+    @project = FactoryGirl.build(:project)
     @project.save
     get project_path(@project)
     response.should be_success
