@@ -26,3 +26,4 @@ doc/
 bundler_stubs/
 public/system
 public/system/*
+tags

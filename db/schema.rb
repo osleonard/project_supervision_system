@@ -11,12 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140129131039) do
-
-  create_table "fileuploads", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20140525230338) do
 
   create_table "projects", force: true do |t|
     t.datetime "created_at"
@@ -25,7 +20,7 @@ ActiveRecord::Schema.define(version: 20140129131039) do
     t.string   "document_content_type"
     t.integer  "document_file_size"
     t.datetime "document_updated_at"
-    t.integer  "user_id"
+    t.integer  "student_id"
   end
 
   create_table "users", force: true do |t|
@@ -36,8 +31,11 @@ ActiveRecord::Schema.define(version: 20140129131039) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_token"
+    t.string   "type"
+    t.integer  "lecturer_id"
   end
 
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
 end

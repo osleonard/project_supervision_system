@@ -1,15 +1,15 @@
 require 'spec_helper'
 
 describe "UserPages" do
-  subject { page } 
+  subject { page }
 
   context "profile page" do
     before do
-      @user = FactoryGirl.create(:user) 
+      @user = FactoryGirl.create(:user)
       visit user_path(@user)
     end
     it { should have_content(@user.name) }
-    it { should have_title(@user.name) }    
+    it { should have_title(@user.name) }
   end
 
   describe  "signup page" do
@@ -26,7 +26,7 @@ describe "UserPages" do
     end
   end
 
-  it "should create a user" do 
+  it "should create a user" do
     visit signup_path
     fill_in "user_name", with: "Akinmolayan Olushola"
     fill_in "user_matric_no", with: "auo/11/794"
@@ -37,17 +37,17 @@ describe "UserPages" do
   end
 
   it "should have a route for projects" do
-    @user = FactoryGirl.build(:user)
+    @student = FactoryGirl.build(:student)
     @project = FactoryGirl.build(:project)
-    @user.projects << @project
-    @user.save
-    @user.reload
+    @student.projects << @project
+    @student.save
+    @student.reload
     @project.reload
-    get user_projects_path(@user, @project) #"user/#{@user.id}/projects/"
+    get user_projects_path(@student, @project) #"student/#{@student.id}/projects/"
     response.should be_success
   end
 
   it "users should be able to upload an own a file" do
-    
+
   end
 end
