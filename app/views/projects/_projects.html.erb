@@ -1,3 +1,3 @@
 <% @projects.each do |project| %>
-  Download Project <%= link_to project.document_file_name, project %> <br />
+  Download Project <%= link_to project.document_file_name, user_project_path(@user, project) %> <br />
 <% end %>

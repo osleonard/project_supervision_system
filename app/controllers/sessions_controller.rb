@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(matric_no: params[:session][:matric_no].downcase)
+    user = User.where("matric_no = ? OR email = ?", params[:session][:matric_no].downcase, params[:session][:matric_no]).first
     if user && user.authenticate(params[:session][:password])
       session[:id] = user.id
       redirect_to user_path(user)

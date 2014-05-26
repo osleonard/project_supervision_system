@@ -107,6 +107,10 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
+
+def login_as(user)
+  ApplicationController.any_instance.stub(:current_user).and_return(user)
+end
 #end
 
 #Spork.each_run do

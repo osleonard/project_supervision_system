@@ -3,8 +3,7 @@
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(:session, url: sessions_path) do |f| %>
-
-      <%= f.label "Matric no" %>
+      <%= f.label "Matric no/Email address" %>
     <%= f.text_field :matric_no %>
 
     <%= f.label "Password" %>

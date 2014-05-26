@@ -2,11 +2,7 @@ class ProjectsController < ApplicationController
   before_filter :get_user
 
   def index
-    if @user.nil?
-      @projects = Project.all
-    else
-      @project = @user.projects
-    end
+     @projects = @user.projects
   end
 
   def new
@@ -41,6 +37,8 @@ class ProjectsController < ApplicationController
   end
 
   def get_user
-    @user = User.find(params[:user_id]) if params[:user_id]
+    @user = User.find_by(:id => params[:user_id]) if params[:user_id]
+
+    redirect_to root_path, :status => :unauthorized unless (@user.present? && current_user.present? && @user == current_user)
   end
 end

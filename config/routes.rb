@@ -1,6 +1,7 @@
 ProjectSupervisionSystem::Application.routes.draw do
   resources :users do
-    resource :projects
+    resources :projects
+    match '/upload', to:'projects#new', via: 'get'
   end
   resources :sessions, only: [:new, :create, :destroy]
   root  'static_pages#home'
@@ -9,8 +10,6 @@ ProjectSupervisionSystem::Application.routes.draw do
   match '/signup', to:'users#new', via: 'get'
   match '/signin', to:'sessions#new', via:'get'
   match '/signout', to:'sessions#destroy', via:'delete'
-  resources :projects 
-  match '/upload', to:'projects#new', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -51,7 +50,7 @@ ProjectSupervisionSystem::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

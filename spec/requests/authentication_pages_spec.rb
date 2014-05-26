@@ -11,6 +11,7 @@ describe "AuthenticationPages" do
 
   context "signin" do
     before {visit signin_path}
+
     context "with invalid information" do
       before { click_button "Sign in" }
       it { page.should have_title('Sign in') }
@@ -20,6 +21,7 @@ describe "AuthenticationPages" do
         it { page.should_not have_selector('div.alert.error') }
       end
     end
+
     context "with valid information"  do
       let(:student) { FactoryGirl.create(:student) }
       before do
@@ -33,6 +35,15 @@ describe "AuthenticationPages" do
       it { page.should have_link('Profile', href: user_path(student)) }
       it { page.should have_link('Sign out', href: signout_path) }
       it { page.should_not have_link('Sign in', href: signin_path) }
+    end
+
+    it "should allow email login for lecturers" do
+      lecturer = FactoryGirl.create(:lecturer)
+      visit signin_path
+      fill_in "session_matric_no", with: lecturer.email
+      fill_in "session_password", with: lecturer.password
+      click_button "Sign in"
+      page.should have_title(lecturer.name)
     end
   end
 end

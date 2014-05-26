@@ -37,13 +37,16 @@ describe "UserPages" do
   end
 
   it "should have a route for projects" do
-    @student = FactoryGirl.build(:student)
-    @project = FactoryGirl.build(:project)
-    @student.projects << @project
-    @student.save
-    @student.reload
-    @project.reload
-    get user_projects_path(@student, @project) #"student/#{@student.id}/projects/"
+    student = FactoryGirl.build(:student)
+    project = FactoryGirl.build(:project)
+    student.projects << project
+    student.save
+    student.reload
+    project.reload
+
+    login_as student
+
+    get user_projects_path(student, project) #"student/#{@student.id}/projects/"
     response.should be_success
   end
 
