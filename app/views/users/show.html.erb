@@ -14,7 +14,7 @@
     </div>
     <% elsif @user.is_a? Lecturer %>
       <% @user.students.each do |student| %>
-        <%= student.name %>
+        <%= student.name %><br>
       <% end %>
     <% end %>
   </section>

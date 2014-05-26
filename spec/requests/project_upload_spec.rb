@@ -57,6 +57,7 @@ describe "Project Upload" do
     get user_project_path(student, project)
 
     response.should be_success
+    response.headers["Content-Disposition"].should eq("attachment; filename=\"#{project.document_file_name}\"")
   end
 
 end

@@ -10,13 +10,8 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    if @user.nil?
-      @project = Project.find(params[:id])
-      send_file @project.document.path, :filename => @project.document_file_name,:content_type => @project.document_content_type
-    else
-      @projects = @user.projects
-      render 'show'
-    end
+    @project = Project.find(params[:id])
+    send_file @project.document.path, :filename => @project.document_file_name,:content_type => @project.document_content_type
   end
 
   def create
