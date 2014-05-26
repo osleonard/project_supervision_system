@@ -36,17 +36,13 @@ describe "UserPages" do
     expect { click_button submit }.to change{User.count}.by(1)
   end
 
-  it "should have a route for projects" do
-    student = FactoryGirl.build(:student)
-    project = FactoryGirl.build(:project)
-    student.projects << project
-    student.save
-    student.reload
-    project.reload
+  it "students should have a route for projects" do
+    project = FactoryGirl.create(:project)
+    student = FactoryGirl.create(:student, :projects => [project])
 
     login_as student
 
-    get user_projects_path(student, project) #"student/#{@student.id}/projects/"
+    get user_projects_path(student, project)
     response.should be_success
   end
 

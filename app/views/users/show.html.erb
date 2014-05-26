@@ -8,4 +8,13 @@
   </h1>
   </section>
   </aside>
-</div>
+  <section>
+    <% if @user.is_a? Student %>
+      <%= render partial: 'projects/projects', :locals => { :@projects => @user.projects } %>
+    </div>
+    <% elsif @user.is_a? Lecturer %>
+      <% @user.students.each do |student| %>
+        <%= student.name %>
+      <% end %>
+    <% end %>
+  </section>

@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       session[:id] = user.id
       redirect_to user_path(user)
     else
-      flash.now[:error] = 'Invalid matricnumber/password combination'
+      flash.now[:error] = 'Invalid (matricnumber/email) or password combination'
       render 'new'
     end
   end
