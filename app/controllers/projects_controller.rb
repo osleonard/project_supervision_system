@@ -5,20 +5,29 @@ class ProjectsController < ApplicationController
      @projects = @user.projects
   end
 
+  def edit
+    @project = Project.find(params[:id])
+  end
+
   def new
     @project = Project.new
   end
 
   def show
     @project = Project.find(params[:id])
-    send_file @project.document.path, :filename => @project.document_file_name,:content_type => @project.document_content_type
+    if @project.present?
+      redirect_to redirect_to 'projects/1'
+    else
+      send_file @project.document.path, :filename => @project.document_file_name,:content_type => @project.document_content_type,
+                :disposition => 'document', :sendfile => true
+      end
   end
 
   def create
     @project = Project.new(file_params)
     if @project.save
       flash[:success] = "Successfully uploaded project"
-      redirect_to root_url
+      redirect_to user_path(current_user)
     else
       flash.now[:error] = 'Invalid matric_number/password combination'
       render 'new'

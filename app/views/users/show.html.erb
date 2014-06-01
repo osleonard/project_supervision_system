@@ -1,20 +1,21 @@
 <% provide(:title, @user.name)%>
 <div class="row">
   <aside class="span4">
-  <section>
-  <h1>
-    <%= gravatar_for @user %>
-    <%= @user.name %>
-  </h1>
-  </section>
+    <section>
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
   </aside>
   <section>
     <% if @user.is_a? Student %>
-      <%= render partial: 'projects/projects', :locals => { :@projects => @user.projects } %>
-    </div>
+        <%= render partial: 'projects/projects', :locals => { :@projects => @user.projects } %>
+
     <% elsif @user.is_a? Lecturer %>
-      <% @user.students.each do |student| %>
-        <%= student.name %><br>
-      <% end %>
+        <% @user.students.each do |student| %>
+            <%= student.name %><br>
+        <% end %>
     <% end %>
-  </section>
+    </section>
+</div>

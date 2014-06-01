@@ -2,6 +2,7 @@ ProjectSupervisionSystem::Application.routes.draw do
   resources :users do
     resources :projects
     match '/upload', to:'projects#new', via: 'get'
+    match '/download', to: 'projects#show', via: 'get'
   end
   resources :sessions, only: [:new, :create, :destroy]
   root  'static_pages#home'
