@@ -1,1 +1,5 @@
-<%= render 'projects' %>
+<%= link_to "Download "+@project.document_file_name, user_project_path(@user, @project) %><br>
+<pre>
+  <%= @file %>
+</pre>
+

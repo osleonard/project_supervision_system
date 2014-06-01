@@ -11,14 +11,24 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    send_file @project.document.path, :filename => @project.document_file_name,:content_type => @project.document_content_type
+    if @project.try(:document).present? and params[:format] == "html"
+      @file = File.read(@project.document.path)
+    elsif @project.try(:document).present?
+      Rails.logger.info "Here"
+      send_file @project.document.path, :filename => @project.document_file_name,:content_type => @project.document_content_type
+    else
+      redirect_to user_path(current_user)
+      Rails.logger.info(current_user)
+    end
   end
 
   def create
     @project = Project.new(file_params)
+    return redirect_to(root_path) unless current_user.is_a?(Student)
+    @project.student = current_user
     if @project.save
       flash[:success] = "Successfully uploaded project"
-      redirect_to root_url
+      redirect_to user_path(current_user)
     else
       flash.now[:error] = 'Invalid matric_number/password combination'
       render 'new'
@@ -34,6 +44,6 @@ class ProjectsController < ApplicationController
   def get_user
     @user = User.find_by(:id => params[:user_id]) if params[:user_id]
 
-    redirect_to root_path, :status => :unauthorized unless (@user.present? && current_user.present? && @user == current_user)
+    redirect_to root_path unless (@user.present? && current_user.present? && (@user == current_user || @user.lecturer = current_user))
   end
 end
