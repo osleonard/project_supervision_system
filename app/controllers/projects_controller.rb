@@ -16,6 +16,9 @@ class ProjectsController < ApplicationController
     elsif @project.try(:document).present?
       Rails.logger.info "Here"
       send_file @project.document.path, :filename => @project.document_file_name,:content_type => @project.document_content_type
+      respond_to do |projects|
+        projects.js
+      end
     else
       redirect_to user_path(current_user)
       Rails.logger.info(current_user)
