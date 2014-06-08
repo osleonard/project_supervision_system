@@ -4,16 +4,18 @@
   <thead>
   <tr>
     <th>File Name</th>
-    <th>File Type</th>
     <th>Last Updated</th>
     <th></th>
     <th></th>
   </tr>
   </thead>
-<tbody>
-<%= @projects.each do |project|%>
-<% render partial: 'table_row', locals: {project: project} %>
-    <% end %>
-</tbody>
+  <tbody>
+    <tr>
+      <% @projects.each do |project| %>
+        <td><%= link_to project.document_file_name, project.document_file_name %></td>
+        <td><%= project.updated_at %></td>
+      <% end %>
+    </tr>
+  </tbody>
 
  </table>
