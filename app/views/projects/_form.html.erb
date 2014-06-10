@@ -1,4 +1,6 @@
-<%= form_for @project do |f| %>
+<% modal ||= false %>
+<% remote = modal ? true : false %>
+<%= form_for(@project, remote: remote, html: { role: :form, 'data-model' => project}) do |f| %>
 
 <%= render 'shared/error_messages' %>
     <div class="form-group">

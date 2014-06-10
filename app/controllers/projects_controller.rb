@@ -5,6 +5,10 @@ class ProjectsController < ApplicationController
      @projects = @user.projects
   end
 
+  def edit
+
+  end
+
   def new
     @project = Project.new
   end

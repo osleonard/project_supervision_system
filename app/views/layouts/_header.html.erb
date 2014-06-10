@@ -18,7 +18,7 @@
           <ul class="dropdown-menu">
             <li><%= link_to "Profile", user_path(current_user) %></li>
             <li><%= link_to "Upload", user_upload_path(current_user) if current_user.is_a?(Student)%></li>
-            <li><%= link_to "Download", user_projects_path(current_user) if current_user.is_a?(Student) %><li>
+            <li><%= link_to "Projects", user_projects_path(current_user) if current_user.is_a?(Student) %><li>
             <li class="divider"></li>
             <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
           </ul>

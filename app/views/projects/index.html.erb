@@ -5,8 +5,6 @@
   <tr>
     <th>File Name</th>
     <th>Last Updated</th>
-    <th></th>
-    <th></th>
   </tr>
   </thead>
   <tbody>
@@ -14,6 +12,9 @@
       <% @projects.each do |project| %>
         <td><%= link_to project.document_file_name, project.document_file_name %></td>
         <td><%= project.updated_at %></td>
+        <td><%= link_to 'Edit', "#" %></td>
+        <td><%= link_to 'Destroy', "#" %></td>
+          <%=render partial: 'table_row', locals: {project: project} %>
       <% end %>
     </tr>
   </tbody>
