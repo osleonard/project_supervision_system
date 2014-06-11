@@ -10,11 +10,10 @@
   <tbody>
     <tr>
       <% @projects.each do |project| %>
-        <td><%= link_to project.document_file_name, project.document_file_name %></td>
+        <td><%= link_to project.document_file_name, user_project_path(project.student, project, :format => :html) %></td>
         <td><%= project.updated_at %></td>
-        <td><%= link_to 'Edit', "#" %></td>
-        <td><%= link_to 'Destroy', "#" %></td>
-          <%=render partial: 'table_row', locals: {project: project} %>
+        <td><%= link_to 'Edit', "#" if project.student == current_user || project.student.lecturer == current_user %></td>
+        <td><%= link_to 'Destroy', "#" if project.student == current_user %></td>
       <% end %>
     </tr>
   </tbody>
