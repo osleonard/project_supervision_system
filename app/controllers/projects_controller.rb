@@ -14,7 +14,13 @@ class ProjectsController < ApplicationController
     end
   end
 
+<<<<<<< HEAD
 
+=======
+  def edit
+    @project = Project.find(params[:id])
+  end
+>>>>>>> 59d6581a3ce09ba175e3d5cfd9f92661b7edb79e
 
   def new
     @project = Project.new
@@ -22,6 +28,7 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
+<<<<<<< HEAD
     if @project.try(:document).present? and params[:format] == "html"
       @file = File.read(@project.document.path)
     elsif @project.try(:document).present?
@@ -29,6 +36,14 @@ class ProjectsController < ApplicationController
     else
       redirect_to user_path(current_user)
     end
+=======
+    if @project.present?
+      redirect_to redirect_to 'projects/1'
+    else
+      send_file @project.document.path, :filename => @project.document_file_name,:content_type => @project.document_content_type,
+                :disposition => 'document', :sendfile => true
+      end
+>>>>>>> 59d6581a3ce09ba175e3d5cfd9f92661b7edb79e
   end
 
   def create

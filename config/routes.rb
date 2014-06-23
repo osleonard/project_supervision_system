@@ -3,7 +3,10 @@ ProjectSupervisionSystem::Application.routes.draw do
     resources :projects
     match '/upload', to:'projects#new', via: 'get'
     match '/download', to: 'projects#show', via: 'get'
+<<<<<<< HEAD
     match '/edit', to: 'projects#edit', via: 'get'
+=======
+>>>>>>> 59d6581a3ce09ba175e3d5cfd9f92661b7edb79e
   end
   resources :sessions, only: [:new, :create, :destroy]
   root  'static_pages#home'

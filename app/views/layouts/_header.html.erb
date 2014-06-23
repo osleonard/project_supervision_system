@@ -7,20 +7,29 @@
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Contact", contact_path %></li>
           <% if user_signed_in? %>
+<<<<<<< HEAD
               <li id="collaborate"><%= link_to "Collaborate", '#' %></li>
               <script>
                   document.getElementById("collaborate")
                           .addEventListener("click", TogetherJS, false);
               </script>
+=======
+          <li><%= link_to "Users", users_path %></li>
+>>>>>>> 59d6581a3ce09ba175e3d5cfd9f92661b7edb79e
             <li id="fat-menu" class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
             <li><%= link_to "Profile", user_path(current_user) %></li>
             <li><%= link_to "Upload", user_upload_path(current_user) if current_user.is_a?(Student)%></li>
+<<<<<<< HEAD
             <li><%= link_to "Projects", user_projects_path(current_user) if current_user.is_a?(Student) %><li>
+=======
+            <li><%= link_to "Download", user_projects_path(current_user) if current_user.is_a?(Student) %><li>
+>>>>>>> 59d6581a3ce09ba175e3d5cfd9f92661b7edb79e
             <li class="divider"></li>
             <li><%= link_to "Sign out", signout_path, method: "delete" %></li>
+            <li><%= link_to 'Settings', edit_user_path(current_user).is_a?(Student) %></li>
           </ul>
         <% else %>
             <li><%= link_to "Sign in", signin_path %></li>
@@ -32,5 +41,9 @@
   </header>
   <div class="container">
   </header>
+<<<<<<< HEAD
 </div>
 
+=======
+ </div>
+>>>>>>> 59d6581a3ce09ba175e3d5cfd9f92661b7edb79e
