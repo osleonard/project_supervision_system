@@ -2,12 +2,19 @@ class ProjectsController < ApplicationController
   before_filter :get_user
 
   def index
-     @projects = @user.projects
+    @projects = @user.projects
+
   end
 
   def edit
-
+    @project = Project.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
+
+
 
   def new
     @project = Project.new

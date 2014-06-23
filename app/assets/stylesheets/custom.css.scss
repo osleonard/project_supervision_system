@@ -202,3 +202,21 @@ input {
 }
 
 
+div.hidden {
+  display: none;
+}
+
+#resizable {
+  width: 150px; height: 150px; padding: 0.5em;
+}
+#resizable h3 {
+  text-align: center; margin: 0;
+}
+
+.slidingDiv {
+  height:300px;
+  background-color: #99CCFF;
+  padding:20px;
+  margin-top:10px;
+  border-bottom:5px solid #3399FF;
+}

@@ -1,21 +1,8 @@
-<% modal ||= false %>
-<% remote = modal ? true : false %>
-<%= form_for(@project, remote: remote, html: { role: :form, 'data-model' => project}) do |f| %>
-
-<%= render 'shared/error_messages' %>
-    <div class="form-group">
-      <%= f.label :title, class: 'control-label' %><br>
-      <%= f.text_field :title, class: 'form-control' %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :content, class: 'control-label' %><br>
-      <%= f.text_area :content, class: 'form_control' %>
-    </div>
-
-    <div class="action">
-      <%= f.submit 'Submit', class:'btn btn-default' %>
-    </div>
+<%= form_for @projects do |f| %>
+  <p>
+  <%= f.label :content %><br />
+  <%= f.text_area :content %>
+  </p>
+  <p> <%=f.submit 'Submit', class: 'btn btn-default' %></p>
 <% end %>
-
 
