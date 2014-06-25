@@ -7,16 +7,11 @@ gem 'rails', '4.0.2'
 gem 'bootstrap-sass', '2.3.2.0'
 gem 'paperclip'
 gem 'aws-sdk'
-<<<<<<< HEAD
-gem 'bootstrap-will_paginate'
-gem 'will_paginate'
-=======
 gem 'albino'
 gem 'nokogiri'
 gem 'redcarpet'
 gem 'will_paginate', '3.0.4'
-gem 'bootstrap-will_paginate', '0.0.9'
->>>>>>> 59d6581a3ce09ba175e3d5cfd9f92661b7edb79e
+
 group :development, :test do
   gem 'pry-rails'
   gem 'mysql2'
