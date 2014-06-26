@@ -8,11 +8,14 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
-    respond_to do |format|
-      format.html
-      format.js
+    if @project.try(:document).present? and params[:format] == "text"
+      @file = File.read(@project.document.path)
     end
   end 
+
+  def update
+
+  end
 
   def new
     @project = Project.new
