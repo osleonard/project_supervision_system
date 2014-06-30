@@ -121,8 +121,25 @@ describe "Project Upload" do
 
 
   describe "#update" do
-    it "student can update their projects"
-    it "lectuers can update projects of their students"
+    it "student can update their projects" do
+      project = FactoryGirl.create(:project)
+      student = FactoryGirl.create(:student, :projects => [project])
+
+      login_as student
+      put user_project_path(student, project), :format => :html, :project => {:document => "My new content"}
+
+      File.read(project.reload.document.path).should eq "My new content"
+    end
+    it "lectuers can update projects of their students" do
+      project = FactoryGirl.create(:project)
+      student = FactoryGirl.create(:student, :projects => [project])
+      lecturer = FactoryGirl.create(:lecturer, :students => [student])
+
+      login_as lecturer
+      put user_project_path(student, project), :format => :html, :project => {:document => "My new content"}
+
+      File.read(project.reload.document.path).should eq "My new content"
+    end
   end
 
 end

@@ -1,4 +1,5 @@
-<%= link_to "Download "+@project.document_file_name, user_project_path(@user, @project) %><br>
+<%= link_to "Download ", user_project_path(@user, @project) %>
+<%= link_to "Edit", edit_user_project_path(@user, @project) %><br>
 <pre>
   <%= @file %>
 </pre>

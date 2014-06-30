@@ -1,2 +1,8 @@
 <h1>Edit Project</h1>
-<%= render 'form' %>
+<%= form_for @project, url: user_project_path(current_user, @project) do |f| %>
+  <p>
+  <%= f.label :content %><br />
+  <%= f.text_area :document, :value => @file %>
+  </p>
+  <p> <%=f.submit 'Submit', class: 'btn btn-default' %></p>
+<% end %>

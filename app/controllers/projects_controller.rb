@@ -8,13 +8,14 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
-    if @project.try(:document).present? and params[:format] == "text"
-      @file = File.read(@project.document.path)
-    end
-  end 
+    @file = File.read(@project.document.path)
+  end
 
   def update
-
+    @project = Project.find(params[:id])
+    Rails.logger.info params
+    File.write(@project.document.path, params[:project][:document])
+    redirect_to user_project_path(@user, @project, :format => "html")
   end
 
   def new
@@ -26,11 +27,9 @@ class ProjectsController < ApplicationController
     if @project.try(:document).present? and params[:format] == "html"
       @file = File.read(@project.document.path)
     elsif @project.try(:document).present?
-      Rails.logger.info "Here"
       send_file @project.document.path, :filename => @project.document_file_name,:content_type => @project.document_content_type
     else
       redirect_to user_path(current_user)
-      Rails.logger.info(current_user)
     end
   end
 
